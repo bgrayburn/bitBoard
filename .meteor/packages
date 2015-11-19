@@ -18,9 +18,9 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
-browserify:react-d3
 coffeescript
 fourseven:scss
+d3js:d3
 react
 msavin:mongol
 msavin:jetsetter
