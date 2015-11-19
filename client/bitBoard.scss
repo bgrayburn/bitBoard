@@ -9,6 +9,12 @@ body {
     svg {
       display:block;
       margin:auto;
+    
+      .x_axis, .y_axis {
+        fill: white;
+        stroke: white
+      }
+  
     }
   }
 }
