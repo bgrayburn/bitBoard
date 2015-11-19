@@ -11,8 +11,9 @@ body {
       margin:auto;
     
       .x_axis, .y_axis {
-        fill: white;
-        stroke: white
+        fill: none;
+        stroke: white;
+        stroke-width: 1.5px;
       }
   
     }
