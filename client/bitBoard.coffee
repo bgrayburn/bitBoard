@@ -1,3 +1,3 @@
-Session.page_tree = 
-  'bit market 1':'graph'
-  'bit market 2':'graph'
+Meteor.startup ->
+  Session.page_tree = {}
+  _.each(stocks, (s)->Session.page_tree[s]="graph")
