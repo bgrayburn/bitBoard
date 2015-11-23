@@ -1,1 +1,1 @@
-stocks = ["AAPL"]
+Meteor.stocks = ["AAPL"]
