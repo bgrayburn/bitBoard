@@ -6,7 +6,7 @@ Meteor.components.linechart = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData: function() {
-    return _.omit(this.props.collection.findOne({}), "_id")
+    return this.props.cursor.fetch()[0]['data']
   },
 
   updateChart: function(props) {
@@ -52,7 +52,7 @@ Meteor.components.linechart = React.createClass({
        d3.min(series, function(s) { return d3.min(s.values, function(v) { return v.x;}); }),
        d3.max(series, function(s) { return d3.max(s.values, function(v) { return v.x;}); })
     ]);
-    
+
     y.domain([
        d3.min(series, function(s) { return d3.min(s.values, function(v) { return v.y;}); }),
        d3.max(series, function(s) { return d3.max(s.values, function(v) { return v.y;}); })
@@ -66,7 +66,7 @@ Meteor.components.linechart = React.createClass({
     chart.append("g")
       .attr("class", "y_axis")
       .call(yAxis)
-          
+
     var singleSeries = chart.selectAll(".series")
       .data(series).enter().append("g").attr("class", "series");
 
