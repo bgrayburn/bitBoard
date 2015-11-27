@@ -5,7 +5,7 @@ Meteor.methods
     response = HTTP.get(url)
     Meteor.testResponse = response
     name = "#{source}.#{table}.close"
-    data = _.map(response['data']['dataset']['data'], ((d) -> dKey = d[0]; return dKey:d[4]))
+    data = _.map(response['data']['dataset']['data'], ((d) -> out = {}; out[d[0]]=d[4]; return out))
     Meteor.testData = data
     data_doc = {name:name, data:data}
     Data.remove({name:name})
