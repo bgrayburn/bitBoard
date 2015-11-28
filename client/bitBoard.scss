@@ -3,19 +3,26 @@ body {
   color: white;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  .linechart {
-    width:100%;
-  
-    svg {
-      display:block;
-      margin:auto;
-    
-      .x_axis, .y_axis {
-        fill: none;
-        stroke: white;
-        stroke-width: 1.5px;
-      }
-  
+  svg.rd3-chart {
+    display:block;
+    margin:auto;
+
+    .x_axis, .y_axis {
+      fill: none;
+      stroke: white;
+      stroke-width: 1.5px;
+    }
+
+    text {
+      fill: white;
+      stroke: white;
+    }
+
+  }
+
+  ul.rd3-legend {
+    span {
+      color: white !important;
     }
   }
 }
