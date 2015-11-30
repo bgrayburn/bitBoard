@@ -24,7 +24,6 @@ Template.graph.helpers
       #ReactDOM.render(
       #  React.createElement(Meteor.components.linechart,{
       #    width:width, height:500, name:name, cursor: Data.find({name:"WIKI.#{data_name}.close"})
-      #  }),
       #  }), graphEl
       #)
       rawData = Data.findOne({name:name})
@@ -41,6 +40,8 @@ Template.graph.helpers
           {
             legend: true,
             data: formattedData
+            width: width,
+            height: 500
           }
         ),
         graphEl
