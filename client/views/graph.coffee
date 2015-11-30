@@ -18,11 +18,15 @@ Template.graph.helpers
         name = "WIKI.#{data_name}.close"
       else
         name = 'test'
+
+      graphEl = document.getElementById('graph-'+Template.instance().id.toString())
+
       #ReactDOM.render(
       #  React.createElement(Meteor.components.linechart,{
       #    width:width, height:500, name:name, cursor: Data.find({name:"WIKI.#{data_name}.close"})
       #  }),
       #  document.getElementById('graph-'+Template.instance().id.toString())
+      #  }), graphEl
       #)
       rawData = Data.findOne({name:name})
       formattedData = _.map _.keys(rawData.data), (k)->
@@ -41,4 +45,5 @@ Template.graph.helpers
           }
         ),
         document.getElementById('graph-'+Template.instance().id.toString())
+        graphEl
       )
