@@ -10,7 +10,7 @@ Template.graph.helpers
   render: ->
     reactD3 = Browserify["react-d3"];
     data_name = Session.get("cur_page").pop()
-    if data_name!= 'test' then Meteor.call("getQuandlDataSet","WIKI",Session.get("cur_page").pop())
+    if data_name != 'test' then Meteor.call("getQuandlDataSet","WIKI",Session.get("cur_page").pop())
     panel = document.getElementById("panel")
     if panel
       width = panel.offsetWidth
