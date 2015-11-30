@@ -1,6 +1,8 @@
 Meteor.methods
   getQuandlDataSet: (source, table, num_of_data_points = 30)->
-    name = "#{source}.#{table}.close"
+    series = ["close","open"]
+    name_base = "#{source}.#{table}."
+    name = name_base + series[0]
     datasetExists = Data.find({name:name}).count()>0
     out = false
     if datasetExists
@@ -23,7 +25,7 @@ Meteor.methods
       data = _.map(raw_data, (d)->{x:parseInt(_.keys(d)[0]), y:_.values(d)[0]})
       Meteor.testData = data
       data = _.sortBy(data, (d)->d.x).slice(0,num_of_data_points)
-      data_doc = {name:name, data:{close:data}}
+      data_doc = {name:name, data:{series[0]:data}}
       Data.remove({name:name})
       Data.insert(data_doc)
       out = true
