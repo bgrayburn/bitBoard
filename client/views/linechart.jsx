@@ -6,13 +6,17 @@ Meteor.components.linechart = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData: function() {
-    return this.props.cursor.fetch()[0]['data']
+    //return this.props.cursor.fetch()[0]['data']
+    var dataDoc = Data.find({name: this.props.name}).fetch()[0];
+    Meteor.testDataDoc = dataDoc
+    return dataDoc.data[_.keys(dataDoc.data)[0]].slice(0,50);
   },
 
   updateChart: function(props) {
     console.log("updatingChart");
     Meteor.testProps = props;
     var data = this.getMeteorData();
+    Meteor.testData = data
     var margin = {top: 20, right: 80, bottom: 30, left: 50},
       width = props.width - margin.left - margin.right,
       height = props.height - margin.top - margin.bottom;
