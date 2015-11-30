@@ -45,3 +45,4 @@ Template.graph.helpers
         ),
         graphEl
       )
+      true
