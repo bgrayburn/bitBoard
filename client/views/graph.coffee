@@ -30,9 +30,8 @@ Template.graph.helpers
       formattedData = _.map _.keys(rawData.data), (k)->
         values = rawData.data[k]
         #values = _.map(values, (v)->
-        #  dateObj = new Date(v[x])
-        #  {x:dateObj, y:v[y]})
-
+        #  dateObj = new Date(v.x)
+        #  {x:dateObj, y:v.y})
         {name: k, values: values}
 
       ReactDOM.render(

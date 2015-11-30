@@ -10,7 +10,6 @@ Meteor.methods
       Winston.info("getting Quandl dataset at #{source}/#{table}")
       url = "https://www.quandl.com/api/v3/datasets/#{source}/#{table}.json?auth_token=#{Meteor.settings.quandl_auth_token}"
       response = HTTP.get(url)
-      Meteor.testResponse = response
       raw_data = _.map(
         response['data']['dataset']['data'],
         ((d) ->
