@@ -1,5 +1,6 @@
 Meteor.methods
   getQuandlDataSet: (source, table, num_of_data_points = 30)->
+    dateX = true
     series = ["close","open"]
     name_base = "#{source}.#{table}."
     name = name_base + series[0]
@@ -16,16 +17,23 @@ Meteor.methods
         response['data']['dataset']['data'],
         ((d) ->
           out = {}
-          date = moment(d[0]).unix() #unix epoch
-          #date = d[0] #date string
+          if dateX
+            date = d[0] #date string
+          else
+            date = moment(d[0]).unix() #unix epoch
           out[date]=d[4]
           return out
         )
       )
-      data = _.map(raw_data, (d)->{x:parseInt(_.keys(d)[0]), y:_.values(d)[0]})
-      Meteor.testData = data
-      data = _.sortBy(data, (d)->d.x).slice(0,num_of_data_points)
-      data_doc = {name:name, data:{series[0]:data}}
+      if dateX
+        data = _.map(raw_data, (d)->{x:_.keys(d)[0], y:_.values(d)[0]})
+      else
+        data = _.map(raw_data, (d)->{x:parseInt(_.keys(d)[0]), y:_.values(d)[0]})
+      first_point = data.length-num_of_data_points
+      last_point = data.length
+      data = _.sortBy(data, (d)->d.x).slice(first_point, last_point)
+      data_doc = {name:name, data:{}}
+      data_doc.data[series[0]] = data
       Data.remove({name:name})
       Data.insert(data_doc)
       out = true
