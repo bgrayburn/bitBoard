@@ -25,7 +25,6 @@ Template.graph.helpers
       #  React.createElement(Meteor.components.linechart,{
       #    width:width, height:500, name:name, cursor: Data.find({name:"WIKI.#{data_name}.close"})
       #  }),
-      #  document.getElementById('graph-'+Template.instance().id.toString())
       #  }), graphEl
       #)
       rawData = Data.findOne({name:name})
@@ -44,6 +43,5 @@ Template.graph.helpers
             data: formattedData
           }
         ),
-        document.getElementById('graph-'+Template.instance().id.toString())
         graphEl
       )
