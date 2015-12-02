@@ -22,7 +22,7 @@ coffeescript
 fourseven:scss
 d3js:d3
 react
-bgrayburn:dashboarder
+bgrayburn:dashboarder@0.0.2
 
 infinitedg:winston
 http
