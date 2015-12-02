@@ -10,11 +10,10 @@ Template.graph.helpers
   render: ->
     reactD3 = Browserify["react-d3"];
     data_name = Session.get("cur_page").pop()
-    Meteor.call("getQuandlDataSet","WIKI",Session.get("cur_page").pop())
     panel = document.getElementById("panel")
     if panel
       width = panel.offsetWidth
-      name = "WIKI.#{data_name}"
+      name = "WIKI."+Session.get("cur_page").pop()
 
       graphEl = document.getElementById('graph-'+Template.instance().id.toString())
 
