@@ -1,23 +1,19 @@
 Template.graph.onCreated ->
-  this.id = Math.random().toString(36).substr(2, 5)
-
-Template.graph.onRendered ->
-  console.log("rendering graph-"+this.id.toString())
-
-Template.graph.helpers
-  id: -> Template.instance().id
-
-  render: ->
+  id =  Math.random().toString(36).substr(2, 5)
+  this.id = id
+  this.renderGraph = ->
     reactD3 = Browserify["react-d3"];
     data_name = Session.get("cur_page").pop()
     panel = document.getElementById("panel")
     if panel
       width = panel.offsetWidth
-      name = "WIKI."+Session.get("cur_page").pop()
 
-      graphEl = document.getElementById('graph-'+Template.instance().id.toString())
+      graphEl = document.getElementById('graph-'+id.toString())
+      Meteor.templateId = id
+      Meteor.graphEl = document.getElementById('graph-'+Meteor.templateId)
+      Meteor.reactD3LineChart = reactD3.LineChart
 
-      rawData = Data.findOne({name:name})
+      rawData = Data.findOne({name:data_name})
       formattedData = _.map _.keys(rawData.data), (k)->
         values = rawData.data[k]
         values = _.map(values, (v)->
@@ -25,7 +21,9 @@ Template.graph.helpers
           {x:dateObj, y:v.y})
         {name: k, values: values}
 
-      ReactDOM.render(
+
+      #ReactDOM.render(
+      React.render(
         React.createElement(reactD3.LineChart,
           {
             legend: true,
@@ -37,3 +35,13 @@ Template.graph.helpers
         graphEl
       )
       true
+
+Template.graph.onRendered ->
+  console.log("rendering graph-"+this.id.toString())
+
+Template.graph.helpers
+  id: -> Template.instance().id
+
+  render: ->
+    Meteor.setTimeout(Template.instance().renderGraph, 500)
+    true

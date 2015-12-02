@@ -2,7 +2,7 @@ Meteor.methods
   getQuandlDataSet: (source, table, num_of_data_points = 30)->
     dateX = true
     name = "#{source}.#{table}"
-    data_doc = {name:name, data:{}}
+    data_doc = {name:table, data:{}}
     series = Meteor.series[0]
     datasetExists = Data.find({name:name}).count()>0
     out = false
